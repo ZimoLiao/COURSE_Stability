@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <string>
 #include <math.h>
@@ -58,9 +59,10 @@ int main()
         ofstream fout;
         fout.open("blasius.dat");
 
+        fout << "variables = y u ddu\n";
         for (int i = 0; i != ny; i++)
         {
-            fout << u[i] << '\t' << ddu[i] << '\n';
+            fout << setw(8) << y[i] << '\t' << setw(12) << u[i] << '\t' << setw(12) << ddu[i] << '\n';
         }
 
         fout.close();
@@ -68,6 +70,7 @@ int main()
 
     delete[] y;
     delete[] u;
+    delete[] ddu;
 }
 
 void f_blasius(const double var[3],
