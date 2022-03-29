@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <complex>
 #include <math.h>
 
 using namespace std;
@@ -9,6 +10,9 @@ using namespace std;
 // r.h.s. of blasius equation
 void f_blasius(const double var[3],
                double varn[3]);
+
+// r.h.s. of compound matrix for O-S equation
+void f_compound();
 
 int main()
 {
@@ -68,9 +72,54 @@ int main()
         fout.close();
     }
 
+    /* compound matrix - shooting method */
+    // parameters
+    double Re = 580, alpha = 0.179;
+    complex<double> c;
+
+    // shooting grid initialization
+    int ncr = 50, nci = 50;
+    double crmin = 0.0, crmax = 1.0, cimin = -0.8, cimax = 0.1;
+    double *cr, *ci;
+    cr = new double[ncr];
+    for (int r = 0; r != ncr; r++)
+        cr[r] = crmin + r * (crmax - crmin) / (ncr - 1);
+    ci = new double[nci];
+    for (int i = 0; i != nci; i++)
+        ci[i] = cimin + i * (cimax - cimin) / (nci - 1);
+
+    double **Dr, **Di;
+    Dr = new double *[ncr];
+    Di = new double *[ncr];
+    for (int r = 0; r != ncr; r++)
+    {
+        Dr[r] = new double[nci];
+        Di[r] = new double[nci];
+    }
+
+    // solve (Euler explicit)
+    // TODO: RK-4
+    for (int r = 0; r != ncr; r++)
+    {
+        for (int i = 0; i != nci; i++)
+        {
+            c = complex(cr[r], ci[i]);
+        }
+    }
+
+    // deallocation
     delete[] y;
     delete[] u;
     delete[] ddu;
+    delete[] cr;
+    delete[] ci;
+    for (int r = 0; r != ncr; r++)
+    {
+        delete[] Dr[r];
+        delete[] Di[r];
+    }
+    delete[] Dr;
+    delete[] Di;
 }
 
 void f_blasius(const double var[3],
@@ -79,4 +128,8 @@ void f_blasius(const double var[3],
     varn[0] = var[1];
     varn[1] = var[2];
     varn[2] = -var[0] * var[2];
+}
+
+void f_compound()
+{
 }
