@@ -6,15 +6,16 @@
             "label": "compile",
             "command": "g++",
             "args": [
-                //"-O3",
+                "-O2",
                 //"-I",
                 //"${workspaceFolder}\\includes",
                 //"-L",
                 //"${workspaceFolder}\\lib",
-                "-g",
+                //"-g",
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                //"-fopenmp",
             ],
             "problemMatcher": [
                 "$gcc"

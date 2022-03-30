@@ -1,0 +1,5 @@
+#!MC 1410
+$!AlterData 
+  Equation = '{D}=sqrt({Dr}**2+{Di}**2)'
+$!AlterData 
+  Equation = '{lnD}=log({D}+0.000000000000001)'
