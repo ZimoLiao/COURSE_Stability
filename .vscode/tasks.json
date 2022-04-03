@@ -6,7 +6,7 @@
             "label": "compile",
             "command": "g++",
             "args": [
-                "-O2",
+                //"-O3",
                 //"-I",
                 //"${workspaceFolder}\\includes",
                 //"-L",

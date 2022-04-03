@@ -9,7 +9,7 @@
 
 using namespace std;
 
-constexpr double Re = 2000, alpha = 0.179;
+constexpr double Re = 1000, alpha = 0.179;
 constexpr complex<double> iunit = {0.0, 1.0};
 double unit = 1.0;
 
@@ -31,7 +31,7 @@ int main()
 
     // spatial discretization
     int ny = 2000;
-    double ly = 60, dy = ly / ny;
+    double ly = 9, dy = ly / ny;
 
     double *y = new double[ny];
     double *u = new double[ny];
@@ -98,7 +98,7 @@ int main()
     complex<double> c;
 
     // shooting grid initialization
-    int ncr = 200, nci = 200;
+    int ncr = 100, nci = 100;
     double crmin = 0.0, crmax = 1.0, cimin = -0.8, cimax = 0.1;
     double *cr, *ci;
     cr = new double[ncr];
